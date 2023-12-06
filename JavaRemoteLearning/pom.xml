@@ -10,7 +10,15 @@
     <packaging>pom</packaging>
     <modules>
         <module>week1p1</module>
+        <module>week1p2</module>
+        <module>week1p3</module>
+        <module>week1p4</module>
+        <module>week1bonus</module>
     </modules>
+    <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
 
 
 </project>
