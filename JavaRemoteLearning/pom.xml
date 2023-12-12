@@ -14,10 +14,12 @@
         <module>week1p3</module>
         <module>week1p4</module>
         <module>week1bonus</module>
+        <module>week2p1</module>
+        <module>week2p3</module>
     </modules>
     <properties>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
 

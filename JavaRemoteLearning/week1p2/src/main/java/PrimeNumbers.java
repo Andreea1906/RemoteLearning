@@ -13,24 +13,11 @@ public class PrimeNumbers {
                 }
 
                 for (int i = 1; i <= number; i++) {
-                    if (isPrime(i)) {
+                    if (PrimeChecker.isPrime(i)) {
                         System.out.println(i + "-PRIME");
                     } else {
                         System.out.println(i);
                     }
                 }
-            }
-
-            // Function to check if a number is prime
-            private static boolean isPrime(int number) {
-                if (number <= 1) {
-                    return false;
-                }
-                for (int i = 2; i <= Math.sqrt(number); i++) {
-                    if (number % i == 0) {
-                        return false;
-                    }
-                }
-                return true;
             }
         }

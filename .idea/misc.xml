@@ -7,6 +7,12 @@
         <option value="$PROJECT_DIR$/JavaRemoteLearning/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/JavaRemoteLearning/week1p1.2/pom.xml" />
+        <option value="$PROJECT_DIR$/JavaRemoteLearning/week2p3/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />
