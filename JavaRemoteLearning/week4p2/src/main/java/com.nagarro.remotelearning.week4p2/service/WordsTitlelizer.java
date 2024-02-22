@@ -3,7 +3,7 @@ package week4p2.src.main.java;
 
 import java.util.*;
 
-public class Titlelize implements Titlelizer {
+public class WordsTitlelizer implements Titlelizer {
     private final Set<String> ignoreWords ;
 
     public Titlelize() {
