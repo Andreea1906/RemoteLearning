@@ -1,6 +1,7 @@
-import com.nagarro.remotelearning.week5p1.DateFormatter;
+package com.nagarro.remotelearning.week5p1;
 
-import java.time.LocalDate;
+import com.nagarro.remotelearning.week5p1.formatter.DateFormatter;
+
 import java.util.Scanner;
 
 public class Main {

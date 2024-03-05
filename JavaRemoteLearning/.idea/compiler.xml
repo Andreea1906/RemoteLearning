@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="week1p2" />
+        <module name="week2p1" />
+        <module name="week1p1" />
+        <module name="week1bonus" />
+        <module name="week7p4" />
+        <module name="week7p3" />
+        <module name="week7p2" />
+        <module name="week4p4" />
+        <module name="week5p3" />
+        <module name="week6p2" />
+        <module name="week7p1" />
+        <module name="week4p3" />
+        <module name="week5p2" />
+        <module name="week6p1" />
+        <module name="week3p3" />
+        <module name="week4p2" />
+        <module name="week5p1" />
+        <module name="week1p4" />
+        <module name="week2p3" />
+        <module name="week3p2" />
+        <module name="week4p1" />
+        <module name="week1p3" />
+        <module name="week2p2" />
+        <module name="week3p1" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

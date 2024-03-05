@@ -1,4 +1,4 @@
-package com.nagarro.remotelearning.week5p1;
+package com.nagarro.remotelearning.week5p1.model;
 
 public enum Day {
 
