@@ -6,13 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="week1p2" />
-        <module name="week2p1" />
-        <module name="week1p1" />
-        <module name="week1bonus" />
         <module name="week7p4" />
+        <module name="week8p3" />
         <module name="week7p3" />
+        <module name="week8p2" />
         <module name="week7p2" />
+        <module name="week8p1" />
         <module name="week4p4" />
         <module name="week5p3" />
         <module name="week6p2" />
@@ -30,6 +29,10 @@
         <module name="week1p3" />
         <module name="week2p2" />
         <module name="week3p1" />
+        <module name="week1p2" />
+        <module name="week2p1" />
+        <module name="week1p1" />
+        <module name="week1bonus" />
       </profile>
     </annotationProcessing>
   </component>

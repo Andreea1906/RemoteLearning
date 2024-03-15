@@ -15,14 +15,34 @@ public class Main {
         Map<Train, List<Integer>> trainSchedule = new HashMap<>();
         Random random = new Random();
 
-        for (int i = 0; i < 10000; i++) {
+        Train trainToTest = null;
+        List<Integer> runningDaysForTestTrain = null;
+
+
+        for (int i = 0; i < 9999; i++) {
             Train train = generateRandomTrain();
             List<Integer> runningDays = generateRandomRunningDays(random);
             trainSchedule.put(train, runningDays);
+
+
+            if (i == 9998) {
+                trainToTest = train;
+                runningDaysForTestTrain = runningDays;
+            }
         }
 
-        Train trainToTest = new Train(123, "Express", 5);
+        testHashMapPerformance(trainSchedule, trainToTest, runningDaysForTestTrain);
+
+    }
+
+    private static void testHashMapPerformance(Map<Train, List<Integer>> trainSchedule, Train trainToTest, List<Integer> runningDaysForTestTrain) {
+        long startTime = System.nanoTime();
+
         List<Integer> runningDays = trainSchedule.get(trainToTest);
+
+        long endTime = System.nanoTime();
+
         System.out.println("Running days for train " + trainToTest + ": " + runningDays);
+        System.out.println("Lookup time: " + (endTime - startTime) + " nanoseconds");
     }
 }

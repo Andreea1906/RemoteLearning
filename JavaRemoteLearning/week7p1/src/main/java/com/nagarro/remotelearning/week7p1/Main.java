@@ -32,16 +32,13 @@ public class Main {
 
         CountryManager countryManager = new CountryManager(countries);
 
-        // Sort the countries by capital
         countryManager.sortCountriesByCapital();
 
-        // Display the sorted list
         System.out.println("\nSorted list by capitals:");
         for (Country country : countries) {
             System.out.println(country.getName() + " - " + country.getCapital());
         }
 
-        // Perform binary search for the country whose capital is Paris
         int index = countryManager.binarySearchCountryByCapital("Paris");
         if (index >= 0) {
             System.out.println("\nFound France at index: " + index);

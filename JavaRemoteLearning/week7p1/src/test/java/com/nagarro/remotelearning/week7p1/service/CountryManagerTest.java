@@ -1,6 +1,7 @@
 package com.nagarro.remotelearning.week7p1.service;
 
 import com.nagarro.remotelearning.week7p1.model.Country;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,11 @@ class CountryManagerTest {
         countries.add(new Country("France", "Paris"));
         countries.add(new Country("Germany", "Berlin"));
         countries.add(new Country("Japan", "Tokyo"));
+    }
+
+    @After
+    public void after(){
+        countries.clear();
     }
 
     @Test

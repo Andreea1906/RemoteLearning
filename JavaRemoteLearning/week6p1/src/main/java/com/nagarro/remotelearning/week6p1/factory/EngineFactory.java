@@ -9,6 +9,7 @@ import com.nagarro.remotelearning.week6p1.exception.UnauthorizedEmployeeExceptio
 import com.nagarro.remotelearning.week6p1.exception.UnqualifiedEmployeeException;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class EngineFactory {
@@ -25,7 +26,7 @@ public class EngineFactory {
     public List<Engine> manufactureEngines(int numberOfEngines, Employee assignedEmployee) {
         checkAssignedEmployee(assignedEmployee);
         if (enoughComponentsInStock(numberOfEngines)) {
-            List<Engine> newEngines = new ArrayList<Engine>();
+            List<Engine> newEngines = new ArrayList<>();
             for (int i = 0; i < numberOfEngines; i++) {
                 newEngines.add(buildEngine());
             }
@@ -33,6 +34,10 @@ public class EngineFactory {
         } else {
             throw new InsufficientStockException("Not enough stock to build [" + numberOfEngines + "] engines!");
         }
+    }
+
+    public List<EngineComponent> getEngineComponents() {
+        return engineComponents;
     }
 
     public static int getComponentsPerEngine() {
@@ -80,6 +85,5 @@ public class EngineFactory {
         int nrOfEngineComponentsInStock = engineComponents.size();
         return nrOfEngineComponentsInStock >= nrOfEngineComponentsNeeded;
     }
-
 
 }

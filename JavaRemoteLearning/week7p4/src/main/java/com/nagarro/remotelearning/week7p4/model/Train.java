@@ -30,6 +30,7 @@ public class Train {
     @Override
     public int hashCode() {
         return Objects.hash(trainNumber, trainType, numberOfWagons);
+        //return 3;
     }
 
     @Override
