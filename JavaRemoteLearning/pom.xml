@@ -38,6 +38,9 @@
         <module>week8p1</module>
         <module>week8p2</module>
         <module>week8p3</module>
+        <module>week9p1</module>
+        <module>week9p2</module>
+        <module>week9p3</module>
     </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

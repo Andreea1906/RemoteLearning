@@ -6,10 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="week9p3" />
         <module name="week7p4" />
         <module name="week8p3" />
+        <module name="week9p2" />
         <module name="week7p3" />
         <module name="week8p2" />
+        <module name="week9p1" />
         <module name="week7p2" />
         <module name="week8p1" />
         <module name="week4p4" />
