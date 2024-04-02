@@ -1,21 +1,26 @@
 package com.nagarro.remotelearning.week9p1;
 
-import com.nagarro.remotelearning.week9p1.model.LogConsumer;
-import com.nagarro.remotelearning.week9p1.model.LogProducer;
-import com.nagarro.remotelearning.week9p1.model.LogServer;
+import com.nagarro.remotelearning.week9p1.model.*;
 
 public class Main {
     public static void main(String[] args) {
-        LogServer logServer = new LogServer(10);
+        LogServer server = new LogServer();
 
-        // Start log producer threads
-        for (int i = 0; i < 3; i++) {
-            Thread producerThread = new Thread(new LogProducer(logServer, i));
-            producerThread.start();
+        for (int i = 1; i <= 5; i++) {
+            Thread clientThread = new Thread(new LogClient(server), "Client-" + i);
+            clientThread.start();
         }
 
-        // Start log consumer thread
-        Thread consumerThread = new Thread(new LogConsumer(logServer));
-        consumerThread.start();
+        Thread serverThread = new Thread(() -> {
+            try {
+                while (true) {
+                    server.consumeMessage();
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "Server");
+        serverThread.start();
     }
 }

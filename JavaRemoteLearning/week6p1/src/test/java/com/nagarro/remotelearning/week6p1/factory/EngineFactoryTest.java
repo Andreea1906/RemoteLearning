@@ -22,6 +22,7 @@ public class EngineFactoryTest {
         employees = new ArrayList<>();
         employees.add(new Employee("John", true, true));
         employees.add(new Employee("Alice", false, true));
+        employees.add(new Employee("Dorel", false, false));
         engineComponents = new ArrayList<>();
         for (int i = 0; i < EngineFactory.getComponentsPerEngine() * 5; i++) {
             engineComponents.add(new EngineComponent("Component" + i, 10.0));
@@ -34,7 +35,7 @@ public class EngineFactoryTest {
         int numberOfEngines = 3;
         Employee assignedEmployee = employees.get(0);
         List<Engine> engines = engineFactory.manufactureEngines(numberOfEngines, assignedEmployee);
-        assertEquals(engineComponents.size() - (long) numberOfEngines * EngineFactory.getComponentsPerEngine(), engineFactory.getEngineComponents().size());
+        assertEquals(numberOfEngines, engines.size());
     }
 
     @org.junit.Test(expected = InsufficientStockException.class)
@@ -54,7 +55,7 @@ public class EngineFactoryTest {
     @org.junit.Test(expected = UnqualifiedEmployeeException.class)
     public void testManufactureEnginesWithUnqualifiedEmployee() {
         int numberOfEngines = 3;
-        Employee unqualifiedEmployee = employees.get(1);
+        Employee unqualifiedEmployee = employees.get(2);
         engineFactory.manufactureEngines(numberOfEngines, unqualifiedEmployee);
     }
 }

@@ -1,31 +1,34 @@
 package com.nagarro.remotelearning.week9p1.model;
 
-import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class LogServer {
-    private final Queue<String> logQueue;
-    private final int maxQueueSize;
+    private final Queue<LogMessage> messageQueue;
 
-    public LogServer(int maxQueueSize) {
-        this.maxQueueSize = maxQueueSize;
-        this.logQueue = new LinkedList<>();
+    public LogServer() {
+        this.messageQueue = new ArrayBlockingQueue<>(10);
     }
 
-    public synchronized void addLog(String logMessage) throws InterruptedException {
-        while (logQueue.size() >= maxQueueSize) {
-            wait();
+    public void addMessage(LogMessage message) throws InterruptedException {
+        synchronized (messageQueue) {
+            while (messageQueue.size() >= 10) {
+                messageQueue.wait();
+            }
+            messageQueue.offer(message);
+            System.out.println("Message added to the queue: " + message.getMessage());
+            messageQueue.notifyAll();
         }
-        logQueue.add(logMessage);
-        notify();
     }
 
-    public synchronized String getLog() throws InterruptedException {
-        while (logQueue.isEmpty()) {
-            wait();
+    public synchronized void consumeMessage() throws InterruptedException {
+        synchronized (messageQueue) {
+            while (messageQueue.isEmpty()) {
+                messageQueue.wait();
+            }
+            LogMessage message = messageQueue.poll();
+            System.out.println("Message consumed from the queue: " + message.getMessage());
+            messageQueue.notifyAll();
         }
-        String logMessage = logQueue.poll();
-        notify();
-        return logMessage;
     }
 }

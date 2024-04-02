@@ -12,7 +12,7 @@ public class DeckManager {
         random = new Random();
     }
 
-    public static Card[] generateDeck() {
+    public Card[] generateDeck() {
         Card[] deck = new Card[52];
         int index = 0;
         for (int number = 1; number <= 13; number++) {

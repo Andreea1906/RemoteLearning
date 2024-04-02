@@ -15,7 +15,7 @@ public class DeckManagerTest {
     @Before
     public void setUp() {
         deckManager = new DeckManager();
-        deck = DeckManager.generateDeck();
+        deck = deckManager.generateDeck();
     }
 
     @Test

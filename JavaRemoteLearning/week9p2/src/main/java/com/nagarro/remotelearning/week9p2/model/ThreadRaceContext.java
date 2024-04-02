@@ -1,38 +1,28 @@
 package com.nagarro.remotelearning.week9p2.model;
 
-import com.nagarro.remotelearning.week9p2.model.ThreadRaceCompetitor;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ThreadRaceContext {
-    private final ThreadRaceCompetitor[] competitors;
-    private final int[] rankings;
-    private int nextRank;
+    private List<Integer> finishedCompetitors;
 
-    public ThreadRaceContext(int numCompetitors) {
-        competitors = new ThreadRaceCompetitor[numCompetitors];
-        rankings = new int[numCompetitors];
-        nextRank = 0;
+    public ThreadRaceContext() {
+        this.finishedCompetitors = new ArrayList<>();
     }
 
-    public synchronized void finishRace(ThreadRaceCompetitor competitor) {
-
-        int rank = nextRank++;
-        rankings[rank] = competitor.getRaceNumber();
-
-        if (nextRank == competitors.length) {
-            System.out.println("Final Rankings:");
-            for (int i = 0; i < competitors.length; i++) {
-                System.out.println("Position " + (i + 1) + ": Competitor " + rankings[i]);
-            }
+    public synchronized void finishRace(int competitorId) {
+        finishedCompetitors.add(competitorId);
+        System.out.println("Competitor " + competitorId + " finished the race.");
+        if (finishedCompetitors.size() == 10) {
+            notifyAll();
         }
     }
 
-    public void addCompetitor(ThreadRaceCompetitor competitor) {
-        competitors[competitor.getRaceNumber() - 1] = competitor;
-    }
-
-    public void startRace() {
-        for (ThreadRaceCompetitor competitor : competitors) {
-            new Thread(competitor).start();
+    public synchronized void printResults() {
+        System.out.println("Final race ranking:");
+        for (int i = 0; i < finishedCompetitors.size(); i++) {
+            System.out.println((i + 1) + ". Competitor " + finishedCompetitors.get(i));
         }
     }
 }
+

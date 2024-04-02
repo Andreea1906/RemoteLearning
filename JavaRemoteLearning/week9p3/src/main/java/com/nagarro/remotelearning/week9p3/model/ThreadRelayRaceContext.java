@@ -1,38 +1,40 @@
 package com.nagarro.remotelearning.week9p3.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class ThreadRelayRaceContext {
-    private final ThreadRelayRaceTeam[] teams;
-    private final int[] rankings;
-    private int nextRank;
+    private Map<String, List<Integer>> teamResults;
+    private List<Integer> finishedTeams;
 
-    public ThreadRelayRaceContext(int numTeams, int numCompetitorsPerTeam) {
-        this.teams = new ThreadRelayRaceTeam[numTeams];
-        this.rankings = new int[numTeams];
-        this.nextRank = 0;
-        for (int i = 0; i < numTeams; i++) {
-            teams[i] = new ThreadRelayRaceTeam("Team " + (i + 1), numCompetitorsPerTeam, this);
+    public ThreadRelayRaceContext() {
+        this.teamResults = new HashMap<>();
+        this.finishedTeams = new ArrayList<>();
+    }
+
+    public synchronized void finishCompetitor(String teamName, int competitorNumber) {
+        if (!teamResults.containsKey(teamName)) {
+            teamResults.put(teamName, new ArrayList<>());
+        }
+        teamResults.get(teamName).add(competitorNumber);
+        System.out.println("Competitor " + competitorNumber + " from team " + teamName + " finished the race.");
+    }
+
+    public synchronized void finishTeam(int teamId) {
+        finishedTeams.add(teamId);
+        System.out.println("Team " + teamId + " finished the race.");
+        if (finishedTeams.size() == 10) {
+            notifyAll();
         }
     }
 
-    public synchronized void finishCompetitor(ThreadCompetitor competitor) {
-
-        if (competitor.getCompetitorNumber() == 1) {
-            int rank = nextRank++;
-            rankings[rank] = Integer.parseInt(competitor.getTeamName());
-            System.out.println(competitor.getTeamName() + " finished in position " + (rank + 1));
-
-            if (nextRank == teams.length) {
-                System.out.println("Final Rankings:");
-                for (int i = 0; i < teams.length; i++) {
-                    System.out.println("Position " + (i + 1) + ": " + rankings[i]);
-                }
-            }
-        }
-    }
-
-    public void startRace() {
-        for (ThreadRelayRaceTeam team : teams) {
-            team.startRace();
+    public synchronized void printResults() {
+        System.out.println("Final relay race ranking:");
+        for (int i = 0; i < finishedTeams.size(); i++) {
+            System.out.println((i + 1) + ". Team " + finishedTeams.get(i));
         }
     }
 }
+

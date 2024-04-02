@@ -1,31 +1,34 @@
 package com.nagarro.remotelearning.week9p3.model;
 
-import com.nagarro.remotelearning.week9p3.model.ThreadCompetitor;
-import com.nagarro.remotelearning.week9p3.model.ThreadRelayRaceContext;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ThreadRelayRaceTeam {
-    private final ThreadCompetitor[] competitors;
-    private final String teamName;
+public class ThreadRelayRaceTeam extends Thread {
+    private int id;
+    private ThreadRelayRaceContext raceContext;
+    private List<ThreadRelayRaceCompetitor> teamMembers;
 
-    public ThreadRelayRaceTeam(String teamName, int numCompetitors, ThreadRelayRaceContext raceContext) {
-        this.teamName = teamName;
-        this.competitors = new ThreadCompetitor[numCompetitors];
-        for (int i = 0; i < numCompetitors; i++) {
-            competitors[i] = new ThreadCompetitor(i + 1, teamName, raceContext);
+    public ThreadRelayRaceTeam(int id, ThreadRelayRaceContext raceContext) {
+        this.id = id;
+        this.raceContext = raceContext;
+        this.teamMembers = new ArrayList<>();
+
+        for (int i = 1; i <= 4; i++) {
+            ThreadRelayRaceCompetitor competitor = new ThreadRelayRaceCompetitor(i, "Team " + id, raceContext);
+            teamMembers.add(competitor);
         }
     }
 
-    public void startRace() {
-        for (ThreadCompetitor competitor : competitors) {
-            new Thread(competitor).start();
+    @Override
+    public void run() {
+        for (ThreadRelayRaceCompetitor competitor : teamMembers) {
+            competitor.start();
+            try {
+                competitor.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public ThreadCompetitor[] getCompetitors() {
-        return competitors;
+        raceContext.finishTeam(id);
     }
 }
