@@ -7,8 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="week10p2" />
+        <module name="week11p1" />
         <module name="week10p1" />
+        <module name="week12p2" />
+        <module name="week13p1" />
         <module name="week10p3" />
+        <module name="week12p1" />
+        <module name="week12p4" />
+        <module name="week12p3" />
         <module name="week9p3" />
         <module name="week7p4" />
         <module name="week8p3" />
@@ -41,8 +47,5 @@
         <module name="week1bonus" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="week11p1" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
